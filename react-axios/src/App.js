@@ -11,7 +11,7 @@ function App() {
     }
     getTodos();
     console.log(todos);
-  })
+  },[]);
   return (
     <div className="App">
       <h1>Todos</h1>
