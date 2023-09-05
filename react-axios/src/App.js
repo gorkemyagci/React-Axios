@@ -3,15 +3,25 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [todos, setTodos] = useState([]);
+
   useEffect(() => {
     const getTodos = async () => {
-      const res = await axios.get('https://jsonplaceholder.typicode.com/todos');
-      const data = res.data;
-      setTodos(data);
+      try {
+        const res = await axios.get('https://jsonplaceholder.typicode.com/todos');
+        const data = res.data;
+        setTodos(data);
+      } catch (error) {
+        console.error(error);
+      }
     }
+
     getTodos();
+  }, []);
+
+  useEffect(() => {
     console.log(todos);
-  },[]);
+  }, [todos])
+
   return (
     <div className="App">
       <h1>Todos</h1>
